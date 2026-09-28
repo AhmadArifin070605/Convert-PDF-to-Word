@@ -12,6 +12,14 @@ $RECYCLE.BIN/
 *.log
 log.txt
 
+# Environment files with secrets
+functions/.env
+android/keystore.properties
+android/*.jks
+android/*.keystore
+android/*.pem
+android/*.der
+
 
 /.sourcemaps
 /.versions
@@ -68,3 +76,4 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+.gradle-home/

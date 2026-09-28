@@ -1,0 +1,240 @@
+.history-content {
+  --padding-top: 18px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-bottom: 28px;
+}
+
+.history-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 100%;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  color: #a0a0a0;
+
+  .empty-icon-box {
+    font-size: 64px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.title-copy {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-title h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.clear-cache-button {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #1f1f1f;
+}
+
+.history-list {
+  margin: 0;
+  padding: 4px 0 0;
+  background: transparent;
+}
+
+.history-card {
+  position: relative;
+  margin: 0 0 14px;
+  padding: 0;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  border: 1px solid #edf1f7;
+  overflow: visible;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+
+  &.expanded {
+    z-index: 8;
+    border-color: rgba(var(--ion-color-primary-rgb), 0.22);
+    box-shadow: 0 12px 30px rgba(var(--ion-color-primary-rgb), 0.12);
+  }
+}
+
+.history-card-main {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px;
+  cursor: pointer;
+}
+
+.icon-box {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(var(--ion-color-primary-rgb), 0.14);
+  font-size: 20px;
+}
+
+.file-copy {
+  min-width: 0;
+}
+
+.file-name {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #162033;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-info {
+  margin: 0;
+  font-size: 12px;
+  color: #667085;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: end;
+}
+
+.file-date {
+  font-size: 12px;
+  color: #98a2b3;
+}
+
+.more-button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #f7f9fc;
+  color: #667085;
+}
+
+.more-button ion-icon {
+  font-size: 18px;
+}
+
+.history-actions {
+  position: absolute;
+  top: calc(100% - 6px);
+  right: 12px;
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 136px;
+  padding: 8px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #edf1f7;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+  pointer-events: auto;
+}
+
+.history-action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #f7f9fc;
+  color: #344054;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.history-action ion-icon {
+  font-size: 18px;
+}
+
+.history-action.danger {
+  background: rgba(var(--ion-color-danger-rgb), 0.1);
+  color: var(--ion-color-danger);
+}
+
+@media (max-width: 768px) {
+  .history-content {
+    --padding-top: calc(env(safe-area-inset-top, 0px) + 36px);
+    --padding-start: 14px;
+    --padding-end: 14px;
+    --padding-bottom: 32px;
+  }
+
+  .page-title {
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+    margin-bottom: 12px;
+  }
+
+  .history-list {
+    padding-top: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .history-content {
+    --padding-top: calc(env(safe-area-inset-top, 0px) + 44px);
+  }
+
+  .history-card-main {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    gap: 10px;
+    padding: 14px 12px;
+  }
+
+  .file-date {
+    display: none;
+  }
+
+}

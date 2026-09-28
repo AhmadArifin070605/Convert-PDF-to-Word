@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'pdf-app',
+  appId: 'com.docswap.pdf.app',
+  appName: 'DocSwap',
   webDir: 'www'
 };
 

@@ -1,0 +1,11 @@
+
+ ⛅️ wrangler 4.85.0
+───────────────────
+Successfully created tail, expires at 2026-04-27T22:30:30Z
+Connected to docswap-convert-proxy, waiting for logs...
+POST https://conversion-lock.internal/convert - Ok @ 4/27/2026, 11:39:54 PM
+  (log) convert durable miss {"source":"durable-lock-create","dedupKey":"114.10.73.6:328c05f9c724a54a888c7763a7e0e5080aa3006082be0339a416ecf6fff731e6","fileName":"Ahmad_Arifin_.24416255201075_firewall_compressed.pdf"}
+  (log) cloudmersive upstream start {"fileName":"Ahmad_Arifin_.24416255201075_firewall_compressed.pdf","fileSize":1482730}
+  (log) cloudmersive upstream success {"fileName":"Ahmad_Arifin_.24416255201075_firewall_compressed.pdf","status":200}
+POST https://docswap-convert-proxy.ahmadarifin070605.workers.dev/api/convert/pdf-to-docx - Ok @ 4/27/2026, 11:39:53 PM
+  (log) convert request accepted {"clientAddress":"114.10.73.6","requestDedupKey":"114.10.73.6:3ef14e74-7564-4227-86a5-e36d777d6784","primaryDedupKey":"114.10.73.6:328c05f9c724a54a888c7763a7e0e5080aa3006082be0339a416ecf6fff731e6","fileName":"Ahmad_Arifin_.24416255201075_firewall_compressed.pdf","fileSize":1482730}

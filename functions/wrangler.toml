@@ -1,0 +1,32 @@
+name = "docswap-convert-proxy"
+main = "worker.mjs"
+compatibility_date = "2026-04-24"
+
+[observability]
+enabled = true
+
+[vars]
+ALLOWED_ORIGINS = "http://localhost:8100,http://localhost:4200,http://localhost,https://localhost,capacitor://localhost,ionic://localhost,null"
+MAX_REQUESTS_PER_WINDOW = "20"
+RATE_LIMIT_WINDOW_MS = "60000"
+MAX_FILE_SIZE_BYTES = "10485760"
+DEDUP_WINDOW_MS = "60000"
+DAILY_CONVERSION_LIMIT = "3"
+DAILY_QUOTA_TIMEZONE = "Asia/Jakarta"
+QUOTA_RESERVATION_TTL_MS = "600000"
+
+[[durable_objects.bindings]]
+name = "CONVERSION_LOCK"
+class_name = "ConversionLock"
+
+[[durable_objects.bindings]]
+name = "DAILY_QUOTA"
+class_name = "DailyQuota"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ConversionLock"]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = ["DailyQuota"]

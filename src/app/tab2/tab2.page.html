@@ -1,17 +1,62 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="history-content">
+  <div class="history-shell">
+    <div class="page-title">
+      <div class="title-copy">
+        <h1>Conversion History</h1>
+      </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      <button type="button" class="clear-cache-button" (click)="clearAllHistory()" *ngIf="history.length > 0">
+        <ion-icon name="trash-outline"></ion-icon>
+        Clear History
+      </button>
+    </div>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+    <div *ngIf="history.length === 0" class="empty-state">
+      <div class="empty-icon-box">
+        <ion-icon name="archive-outline"></ion-icon>
+      </div>
+      <h2>No conversions yet</h2>
+      <p>Your converted files will appear here.</p>
+    </div>
+
+    <ion-list lines="none" class="history-list" *ngIf="history.length > 0">
+      <div *ngFor="let item of history" class="history-card" [class.expanded]="isExpanded(item)" role="button"
+        tabindex="0" (click)="toggleFileActions(item)">
+        <div class="history-card-main">
+          <div class="icon-box">
+            <ion-icon name="document-text-outline" color="primary"></ion-icon>
+          </div>
+
+          <div class="file-copy">
+            <h2 class="file-name">{{ item.name }}</h2>
+            <p class="file-info">PDF to DOCX - {{ (item.size / 1024).toFixed(1) }} KB</p>
+          </div>
+
+          <div class="card-meta">
+            <span class="file-date">{{ formatHistoryDate(item.date) }}</span>
+            <button type="button" class="more-button" aria-label="Buka aksi file"
+              (click)="toggleFileActions(item); $event.stopPropagation()">
+              <ion-icon name="ellipsis-horizontal"></ion-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="history-actions" *ngIf="isExpanded(item)" (click)="$event.stopPropagation()">
+          <button type="button" class="history-action primary"
+            (click)="openHistoryFile(item); $event.stopPropagation()">
+            <ion-icon name="download-outline"></ion-icon>
+            Download
+          </button>
+          <button type="button" class="history-action" (click)="shareAgain(item); $event.stopPropagation()">
+            <ion-icon name="share-social-outline"></ion-icon>
+            Share
+          </button>
+          <button type="button" class="history-action danger" (click)="deleteItem(item.id); $event.stopPropagation()">
+            <ion-icon name="trash-outline"></ion-icon>
+            Delete
+          </button>
+        </div>
+      </div>
+    </ion-list>
+  </div>
 </ion-content>

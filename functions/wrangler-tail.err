@@ -1,0 +1,7 @@
+This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). The promise rejected with the reason:
+APIError: A request to the Cloudflare API (/accounts/41db6dafe8ffab7979131b5f12e9fc68/workers/scripts/docswap-convert-proxy/tails/e86aaf86ae3e4eb9b5edef85d502bca5) failed.
+    at throwFetchError (C:\Users\ahmad\AppData\Local\npm-cache\_npx\32026684e21afda6\node_modules\wrangler\wrangler-dist\cli.js:132029:18)
+    at fetchResult (C:\Users\ahmad\AppData\Local\npm-cache\_npx\32026684e21afda6\node_modules\wrangler\wrangler-dist\cli.js:131911:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async deleteTail (C:\Users\ahmad\AppData\Local\npm-cache\_npx\32026684e21afda6\node_modules\wrangler\wrangler-dist\cli.js:243390:5)
+    at async _WebSocket.exit (C:\Users\ahmad\AppData\Local\npm-cache\_npx\32026684e21afda6\node_modules\wrangler\wrangler-dist\cli.js:292566:11)

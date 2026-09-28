@@ -1,17 +1,199 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="home-content">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- 🔥 OFFLINE MODAL -->
+  <div class="offline-modal" *ngIf="showOfflineModal">
+    <div class="offline-card">
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+      <div class="offline-icon">
+        <ion-icon name="wifi-outline"></ion-icon>
+      </div>
+
+      <h2>No Internet Connection</h2>
+
+      <p>
+        Please check your internet connection
+        and try again.
+      </p>
+
+      <button class="retry-btn" (click)="retry()">
+        Try Again
+      </button>
+
+    </div>
+  </div>
+
+  <div class="page-shell">
+    <section class="hero">
+      <h1>DocSwap</h1>
+      <p>Convert documents instantly</p>
+    </section>
+
+    <section class="panel">
+      <div class="quota-card" [class.quota-card-empty]="quotaExhausted">
+        <div>
+          <span class="quota-label">Daily API tokens</span>
+          <strong>{{ dailyTokenLabel }}</strong>
+        </div>
+        <p>Each conversion uses 1 token and resets every day.</p>
+      </div>
+
+      <input *ngIf="isWebUpload && !selectedFile && status === 'idle'" #webUploadInput id="web-upload-input" type="file"
+        accept="application/pdf,.pdf" class="web-file-input" (change)="onWebFileSelected($event)" />
+
+      <div *ngIf="isWebUpload && !selectedFile && status === 'idle'" class="upload-box upload-box-web" tabindex="0"
+        role="button" (click)="openWebFilePicker($event)" (keydown.enter)="openWebFilePicker($event)"
+        (keydown.space)="openWebFilePicker($event)">
+
+        <ion-icon name="cloud-upload-outline"></ion-icon>
+
+        <button type="button" class="upload-trigger" (click)="openWebFilePicker($event)">
+          Choose File
+        </button>
+
+        <p>PDF only • Max 3MB</p>
+
+        <p *ngIf="errorMessage" class="error-text">
+          {{ errorMessage }}
+        </p>
+      </div>
+
+      <button *ngIf="!isWebUpload && !selectedFile && status === 'idle'" type="button" class="upload-box"
+        (click)="pickFile()">
+
+        <ion-icon name="cloud-upload-outline"></ion-icon>
+        <span class="upload-trigger">Choose File</span>
+
+        <p>PDF only • Max 3MB</p>
+
+        <p *ngIf="errorMessage" class="error-text">
+          {{ errorMessage }}
+        </p>
+      </button>
+
+      <!-- 🔥 FILE CARD -->
+      <ion-card *ngIf="selectedFile && status === 'idle'" class="state-card file-action-card enter-card">
+
+        <ion-card-content>
+
+          <div class="file-row file-row-top">
+            <div class="file-meta">
+
+              <div class="file-icon-wrap">
+                <ion-icon name="document-text-outline"></ion-icon>
+              </div>
+
+              <div class="file-copy">
+                <!-- ✅ FIX NAMA FILE -->
+                <h2 class="file-name">{{ selectedFile.name }}</h2>
+                <p>{{ selectedFileSizeLabel }}</p>
+              </div>
+
+            </div>
+
+            <button type="button" class="remove-btn" aria-label="Remove file" (click)="removeFile()">
+              <ion-icon name="close-circle-outline"></ion-icon>
+            </button>
+          </div>
+
+          <div class="conversion-type">
+            <span>PDF</span>
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+            <span class="active-format">DOCX</span>
+          </div>
+
+          <button type="button" class="convert-btn native-convert-btn" [disabled]="convertButtonDisabled"
+            (click)="convertFile()">
+
+            {{ quotaExhausted ? 'Daily Limit Reached' : 'Convert Now' }}
+          </button>
+
+          <div class="processing-note">
+            <ion-icon name="alert-circle-outline"></ion-icon>
+            <p>
+              PDF files are processed through DocSwap servers.
+              <a [routerLink]="['/tabs/tab3']">View Privacy Policy</a>
+            </p>
+          </div>
+
+          <p *ngIf="quotaExhausted && !errorMessage" class="error-text">
+            The daily conversion token has expired. Please try again tomorrow.
+          </p>
+
+          <p *ngIf="errorMessage" class="error-text">
+            {{ errorMessage }}
+          </p>
+
+        </ion-card-content>
+      </ion-card>
+
+      <!-- LOADING -->
+      <div *ngIf="status === 'converting'" class="loading-card">
+
+        <div class="loading-icon">
+          <ion-icon name="document-text-outline"></ion-icon>
+        </div>
+
+        <h2>Converting document...</h2>
+        <p>Please wait while we prepare your DOCX file</p>
+
+        <div class="loading-bar">
+          <div class="loading-fill"></div>
+        </div>
+
+      </div>
+
+      <!-- RESULT -->
+      <ion-card *ngIf="status === 'done'" class="state-card result-card enter-card">
+        <ion-card-content>
+
+          <div class="result-head">
+            <div class="result-status">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+              <span>Conversion Complete!</span>
+            </div>
+
+            <button type="button" class="remove-btn result-close" (click)="removeFile()">
+              <ion-icon name="close-circle-outline"></ion-icon>
+            </button>
+          </div>
+
+          <div class="result-file-panel">
+            <div class="result-file-icon">
+              <ion-icon name="document-text-outline"></ion-icon>
+            </div>
+
+            <div class="result-file-copy">
+              <span class="result-file-label">Ready to use</span>
+              <p class="result-name">{{ convertedFileName }}</p>
+            </div>
+          </div>
+
+          <div class="result-divider"></div>
+
+          <div class="result-actions">
+
+            <button type="button" class="action-button primary-action" (click)="downloadFile()">
+
+              <ion-icon name="download-outline"></ion-icon>
+              <span>{{ primaryActionLabel | uppercase }}</span>
+            </button>
+
+            <button type="button" class="action-button secondary-action" (click)="shareFile()">
+
+              <ion-icon name="share-social-outline"></ion-icon>
+              <span>SHARE</span>
+            </button>
+
+          </div>
+
+          <div *ngIf="exportMessage" class="export-feedback">
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+            <span>{{ exportMessage }}</span>
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+
+    </section>
+  </div>
 </ion-content>

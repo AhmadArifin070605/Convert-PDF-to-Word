@@ -1,1 +1,102 @@
+:host {
+  --tab-accent: #245cf4;
+  --tab-ink: #202536;
+  --tab-muted: #7a8190;
+  --tab-border: rgba(220, 226, 238, 0.9);
+}
 
+/* Layout */
+ion-tabs {
+  --background: #ffffff;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: 100%;
+}
+
+ion-router-outlet {
+  position: relative;
+  z-index: 0;
+}
+
+/* 🔥 TAB BAR (Clean & Balance) */
+ion-tab-bar {
+  width: 100%;
+  min-height: calc(56px + env(safe-area-inset-bottom));
+  padding: 4px 0 calc(4px + env(safe-area-inset-bottom));
+
+  background: #ffffff;
+  border-top: 1px solid var(--tab-border);
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 🔥 TAB BUTTON */
+ion-tab-button {
+  --color: var(--tab-muted);
+  --color-selected: var(--tab-accent);
+
+  flex: 1;
+  min-height: 48px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  /* 🔥 MATIKAN GERAK */
+  transition: none;
+  animation: none;
+}
+
+/* ACTIVE (warna aja, tanpa garis) */
+ion-tab-button.tab-selected {
+  color: var(--tab-accent);
+  font-weight: 600;
+}
+
+/* ❌ HAPUS GARIS BIRU */
+ion-tab-button.tab-selected::after {
+  display: none;
+}
+
+/* ICON (DIAM) */
+ion-icon {
+  font-size: 22px;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* LABEL */
+ion-label {
+  font-size: 11px;
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+/* ❌ MATIKAN SEMUA EFEK CLICK */
+ion-tab-button:active {
+  transform: none !important;
+}
+
+ion-tab-button:active ion-icon {
+  transform: none !important;
+}
+
+/* RESPONSIVE */
+@media (max-width: 360px) {
+  ion-tab-bar {
+    min-height: calc(52px + env(safe-area-inset-bottom));
+  }
+
+  ion-icon {
+    font-size: 20px;
+  }
+
+  ion-label {
+    font-size: 10px;
+  }
+}

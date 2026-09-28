@@ -1,0 +1,195 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.splash-content {
+  --background: radial-gradient(circle at top left, rgba(88, 139, 255, 0.22), transparent 36%),
+    radial-gradient(circle at bottom right, rgba(40, 89, 208, 0.18), transparent 34%),
+    linear-gradient(180deg, #f4f8ff 0%, #ffffff 48%, #edf4ff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.85;
+}
+
+.orb-left {
+  inset: -3rem auto auto -4rem;
+  width: 14rem;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(126, 168, 255, 0.5), rgba(126, 168, 255, 0));
+}
+
+.orb-right {
+  inset: auto -5rem 6rem auto;
+  width: 16rem;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(64, 112, 236, 0.3), rgba(64, 112, 236, 0));
+}
+
+.splash-shell {
+  position: relative;
+  min-height: 100%;
+  display: grid;
+  place-content: center;
+  gap: 1.7rem;
+  padding: 2rem 2rem 2.6rem;
+  text-align: center;
+}
+
+.brand-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.logo-wrap {
+  width: 9.5rem;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 2.3rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(242, 247, 255, 0.96));
+  box-shadow: 0 24px 50px rgba(49, 85, 150, 0.16);
+  animation: logo-pop 700ms ease-out both, logo-float 2.8s ease-in-out 900ms infinite;
+}
+
+.logo-image {
+  width: 5.8rem;
+  object-fit: contain;
+}
+
+.spark {
+  position: absolute;
+  height: 0.22rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #5789ff, transparent);
+  animation: spark-fade 1.9s ease-in-out infinite;
+}
+
+.spark-one {
+  width: 4.2rem;
+  inset: 1rem -1.5rem auto auto;
+}
+
+.spark-two {
+  width: 3rem;
+  inset: auto auto 1.4rem -0.9rem;
+  animation-delay: 500ms;
+}
+
+.brand-copy,
+.loader-block {
+  animation: fade-up 900ms ease-out both;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: #6f88b4;
+}
+
+.brand-copy h1 {
+  margin: 0;
+  font-size: clamp(2.3rem, 8vw, 3.9rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #24395a;
+}
+
+.brand-copy p {
+  margin: 0.8rem 0 0;
+  color: #6880a2;
+  letter-spacing: 0.02em;
+}
+
+.loader-block {
+  width: min(100%, 17rem);
+}
+
+.loader-track {
+  width: 100%;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: rgba(128, 157, 214, 0.18);
+  overflow: hidden;
+}
+
+.loader-bar {
+  display: block;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(90deg, #2a66ff 0%, #6e9bff 100%);
+  animation: load-slide 1.35s ease-in-out infinite;
+}
+
+.loader-caption {
+  display: inline-block;
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #7f92b0;
+}
+
+@keyframes logo-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.84) translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes logo-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spark-fade {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scaleX(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.05);
+  }
+}
+
+@keyframes load-slide {
+  0% {
+    transform: translateX(-110%);
+  }
+
+  100% {
+    transform: translateX(240%);
+  }
+}

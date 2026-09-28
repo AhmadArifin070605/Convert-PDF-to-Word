@@ -1,0 +1,397 @@
+:host {
+  display: block;
+}
+
+ion-content.home-content {
+  --overflow: auto;
+  overscroll-behavior-y: contain;
+}
+
+.quota-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  border: 1px solid #e2e9f7;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgba(64, 88, 138, 0.08);
+}
+
+.quota-label {
+  display: block;
+  margin-bottom: 4px;
+  color: #687386;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.quota-card strong {
+  display: block;
+  color: #1f2430;
+  font-size: 1rem;
+}
+
+.quota-card p {
+  max-width: 132px;
+  margin: 0;
+  color: #687386;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  text-align: right;
+}
+
+.quota-card-empty {
+  border-color: rgba(210, 48, 64, 0.22);
+  background: #fff8f9;
+}
+
+.quota-card-empty strong {
+  color: #d23040;
+}
+
+.processing-note {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid #e7edf8;
+  border-radius: 16px;
+  background: #f8fbff;
+}
+
+.processing-note ion-icon {
+  margin-top: 2px;
+  color: #3567e0;
+  font-size: 1rem;
+}
+
+.processing-note p {
+  margin: 0;
+  color: #5e6a80;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.processing-note a {
+  color: #1f5ae0;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.processing-note a:hover,
+.processing-note a:focus {
+  text-decoration: underline;
+}
+
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 28px 12px 8px;
+}
+
+.progress-title {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #7a8fff;
+  text-align: center;
+}
+
+.progress-caption {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #7b8498;
+  text-align: center;
+}
+
+.custom-progress-track {
+  position: relative;
+  width: min(100%, 272px);
+  height: 16px;
+  margin: 4px auto 0;
+  overflow: hidden;
+}
+
+.progress-rail {
+  position: absolute;
+  inset: 4px 0;
+  border-radius: 999px;
+  background: #e6e9f0;
+  overflow: hidden;
+}
+
+.progress-pulse {
+  position: absolute;
+  top: 4px;
+  left: -72px;
+  width: 72px;
+  height: 8px;
+  display: block;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #1e5ff1 0%, #4c86ff 100%);
+  animation: docswap-loading-slide 1.15s linear infinite;
+}
+
+@media (max-width: 480px) {
+  .quota-card {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .quota-card p {
+    max-width: none;
+    text-align: left;
+  }
+
+  .progress-container {
+    padding-top: 24px;
+  }
+
+  .progress-caption {
+    font-size: 0.84rem;
+  }
+}
+
+@keyframes docswap-loading-slide {
+  0% {
+    left: -72px;
+    opacity: 0.92;
+  }
+
+  100% {
+    left: 100%;
+    opacity: 1;
+  }
+}
+
+.error-text {
+  color: #ff4d4f;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.file-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-copy {
+  min-width: 0;
+}
+
+/* BACKDROP */
+.offline-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CARD */
+.offline-card {
+  width: 85%;
+  max-width: 320px;
+
+  background: #ffffff;
+  border-radius: 24px;
+
+  padding: 24px 20px;
+
+  text-align: center;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+
+  animation: modalPop 0.25s ease;
+}
+
+/* ICON */
+.offline-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 12px;
+
+  border-radius: 50%;
+  background: #eef3ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.offline-icon ion-icon {
+  font-size: 28px;
+  color: #245cf4;
+}
+
+/* TITLE */
+.offline-card h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* TEXT */
+.offline-card p {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 18px;
+}
+
+/* BUTTON */
+.retry-btn {
+  width: 100%;
+  padding: 12px;
+
+  border-radius: 14px;
+  border: none;
+
+  background: linear-gradient(135deg, #245cf4, #4a7dff);
+  color: white;
+
+  font-weight: 600;
+  font-size: 14px;
+
+  box-shadow: 0 6px 14px rgba(36, 92, 244, 0.25);
+}
+
+/* ANIMATION */
+@keyframes modalPop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.retry-btn:active {
+  transform: scale(0.96);
+}
+
+.offline-icon {
+  animation: pulse 1.5s infinite;
+  background: radial-gradient(circle, #eef3ff, #e0e9ff);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* CARD */
+.loading-card {
+  width: 90%;
+  max-width: 320px;
+  margin: 40px auto;
+
+  padding: 22px;
+
+  border-radius: 20px;
+  background: #fff;
+
+  text-align: center;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ICON */
+.loading-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 12px;
+
+  border-radius: 50%;
+  background: #eef3ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation: spin 1.2s linear infinite;
+}
+
+.loading-icon ion-icon {
+  font-size: 26px;
+  color: #245cf4;
+}
+
+/* TEXT */
+.loading-card h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.loading-card p {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 14px;
+}
+
+/* PROGRESS BAR */
+.loading-bar {
+  width: 100%;
+  height: 6px;
+
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.loading-fill {
+  height: 100%;
+  width: 40%;
+
+  background: linear-gradient(90deg, #245cf4, #6ea3ff);
+  border-radius: 999px;
+
+  animation: loadingMove 1.2s infinite;
+}
+
+/* ANIMATIONS */
+@keyframes loadingMove {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

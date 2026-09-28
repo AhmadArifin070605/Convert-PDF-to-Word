@@ -1,0 +1,14 @@
+{
+  "name": "docswap-functions",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Backend proxy for DocSwap conversions",
+  "scripts": {
+    "start": "node server.js",
+    "cf:dev": "npx wrangler dev",
+    "cf:deploy": "npx wrangler deploy"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
